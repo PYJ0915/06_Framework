@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TodoList - Boot</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+
+<body>
+  <h1>Todo List</h1>
+
+  <hr>
+
+  <h3><a href="/ajax/main">TodoList - Ajax 버전 페이지로...</a></h3>
+
+
+  <p>todoNo가 1인 할 일 제목 조회</p>
+
+  <form action="/todo/add" method="post">
+    <h4>할 일 추가</h4>
+    <div>
+      제목 : <input type="text" name="todoTitle">
+    </div>
+    <div>
+      <textarea cols="50" rows="5" name="todoContent" placeholder="상세 내용"></textarea>
+    </div>
+    <button>추가하기</button>
+  </form>
+
+  <hr>
+
+ 
+  <h3>전체 Todo 개수/완료된 Todo 개수 내용
+  </h3>
+
+  <table border="1">
+    <thead>
+      <tr>
+        <th>행 번호</th>
+        <th>할 일 번호</th>
+        <th>할 일 제목</th>
+        <th>완료 여부</th>
+        <th>등록 날짜</th>
+      </tr>
+    </thead>
+
+    <tbody>
+     
+      <tr >
+        <td>행 번호</td>
+        <td>할 일 번호</td>
+        <td>
+          <a>할 일 제목</a>
+        </td>
+        <td>완료 여부(Y/N)</td>
+        <td>등록일</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+</body>
+
+</html>

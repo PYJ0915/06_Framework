@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.kh.todo.model.mapper.TodoMapper">
+
+<!-- 아래 태그는 mapper.xml 파일 생성하자마자 삭제!
+  <cache-ref namespace=""/>
+  -->
+  
+</mapper>

@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import edu.kh.demo.model.dto.Student;
@@ -28,7 +30,6 @@ public class ExampleController {
 	 * 
 	 *  [기본 사용법]
 	 * model.addAttribute("key", value);
-	 * 
 	 * 
 	 * */
 
@@ -72,4 +73,60 @@ public class ExampleController {
 		
 	}
 	
+	@PostMapping("ex2")	// /example/ex2 POST 방식 요청 매핑
+	public String ex2(Model model) {
+		
+		model.addAttribute("str", "<h1> 테스트 중 &times; </h1>"); // request scope
+		
+		// src/main/resources/templates/example/ex2.html
+		return "example/ex2";
+	}
+	
+	@GetMapping("ex3")
+	public String ex3(Model model) {
+		
+		model.addAttribute("key", "제목");
+		model.addAttribute("query", "검색어");
+		model.addAttribute("boardNo", 10);
+		
+		return "example/ex3";
+		
+	}
+	
+	@GetMapping("ex3/{path}")
+	public String pathVariableTest(@PathVariable("path") int path) {
+		// controller에서 해야하는 일이 동일한 경우
+		// example/ex3/1, example/ex3/2, example/ex3/3 ...
+		// 주소 중 {path}부분의 값을 가져와서 매개변수로 저장
+		// => 이 매개변수 값을 controller 단의 메서드에서 사용할 수 있도록 해줌 (이 값을 Service -> DAO -> DB)
+		// + 해당 값은 request scope에 자동으로 세팅 됨! (변수명=값)
+		
+		
+		return "example/testResult";
+	}
+	
+	@GetMapping("ex4")
+	public String ex4(Model model) {
+		
+		Student std = new Student("67890", "잠만보", 30);
+		
+		model.addAttribute("std", std);
+		model.addAttribute("num", 100);
+		
+		return "example/ex4";	
+	}
+	
+	
+	@GetMapping("ex5")
+	public String ex5(Model model) {
+		
+		model.addAttribute("message", "타임리프 + Javascript 사용 연습");
+		model.addAttribute("num1", 12345);
+		
+		Student std = new Student();
+		std.setStudentNo("2222");
+		model.addAttribute("std", std);
+		
+		return "example/ex5";
+	}
 }

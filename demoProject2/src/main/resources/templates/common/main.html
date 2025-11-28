@@ -6,6 +6,7 @@
   <title>thymeleaf</title>
 </head>
 <body>
+  <th:block th:replace="~{fragments/header}"></th:block>
   <h1>thymeleaf</h1>
 
   <h3>1. 템플릿 엔진</h3>
@@ -54,5 +55,6 @@ Spring Boot에서는 JSP가 아닌 Thymeleaf 사용을 권장하고 있음.
    </li>
  </ol>
 
+  <th:block th:replace="~{fragments/footer :: footer1}"></th:block>
 </body>
 </html>

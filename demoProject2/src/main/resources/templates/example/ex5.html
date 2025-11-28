@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>타임리프 예제 5</title>
+
+  <style>
+    .red { color: red; }
+    .green { color: green; }
+    .deco { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <h1>타임리프 예제 5</h1>
+
+  <h3>th:inline="Javascript" 속성</h3>
+  <pre>
+- script 태그에 작성하는 속성
+- 타임리프 문법으로 출력된 내용/값을 알맞은 타입으로 변환
+  </pre>
+
+  <h3 id="message"></h3>
+  <h3 id="num1"></h3>
+
+  <hr>
+
+  <h3>th:classappend 속성 - 요소에 class 속성 값을 동적으로 추가</h3>
+
+  <h4 class="red" th:classappend="deco">th:classappend 테스트 중...</h4>
+
+  <!-- gt(grater than) > 기호 -->
+  <!-- lt(less than) < 기호 -->
+  <h4 class="deco" th:classappend="${num1 gt 10000} ? green : red">th:classappend 테스트 중...</h4>
+
+  <hr>
+
+  <h3>안전 탐색 연산자 ${객체?.필드}</h3>
+  <pre>
+객체가 null인지 판단 후 null이 아닌 경우에 수행!
+  </pre>
+
+  <h4 th:text="${member?.memberNo}">회원 번호</h4>
+  <h4 th:text="${std?.studentNo}">학생 번호</h4>
+
+  <hr>
+
+  <h3>${#numbers.sequence(시작, 끝 [, step])}</h3>
+
+  <pre>
+- 시작부터 끝까지 번호로만 이루어진 숫자 배열 생성
+    ex) ${#numbers.sequence(1, 5)} => [1, 2, 3, 4, 5]
+
+    [왜 사용할까?]
+- 타임리프 반복문 th:each는 향상된 for문 형태로 일반 for문의 동작을 하지 못하기 때문에 이를 해결하기 위해 사용!
+  </pre>
+
+  <ul>
+    <!-- 11부터 시작해서 20까지 2씩 증가하며 반복하면서 li 태그 출력 
+        1. [11, 13, 15, 17, 19]로 이루어진 배열 생성
+        2. 만들어진 배열을 대상으로 반복(th:each)
+    -->
+
+    <li th:each="i : ${#numbers.sequence(11, 20, 2)}" th:text="|테스트 ${i}|"></li>
+
+    <!--
+     <li>테스트11</li> 
+     <li>테스트13</li> 
+     <li>테스트15</li> 
+     <li>테스트17</li> 
+     <li>테스트19</li> 
+     -->
+  </ul>
+
+
+  <script th:inline="Javascript">
+    // 타임리프에서 javascript 코드를 동적으로 처리할 수 있도록 해줌
+    // => 스크립트 태그 내부에서 타임리프의 변수나 연산을 사용할 수 있게 함
+    const message = /*[[${message}]]*/ "message 값";
+    const num1 = /*[[${num1}]]*/ 100;
+
+    document.querySelector("#message").innerText = message;
+    document.querySelector("#num1").innerText = num1;
+  </script>
+</body>
+</html>

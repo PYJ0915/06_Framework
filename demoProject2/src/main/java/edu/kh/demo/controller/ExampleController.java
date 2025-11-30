@@ -38,7 +38,7 @@ public class ExampleController {
 		
 		req.setAttribute("test1", "HttpServletRequest로 전달한 값"); // request scope
 		model.addAttribute("test2", "Model로 전달한 값"); // request scope
-		
+			
 		// 단일 값 (숫자, 문자열) Model을 이용해서 html로 전달
 		model.addAttribute("productName", "마이크");
 		model.addAttribute("price", 20000);

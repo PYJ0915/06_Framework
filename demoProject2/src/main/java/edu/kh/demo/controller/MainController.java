@@ -19,7 +19,7 @@ public class MainController {
 		// 접두사 : classpath:/templates/
 		// 접미사 : .html
 		
-		//classpath:.templates/common/main.html
+		//classpath:/templates/common/main.html
 		return "common/main";
 		
 	}

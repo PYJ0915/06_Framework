@@ -30,16 +30,15 @@ import com.zaxxer.hikari.HikariDataSource;
 public class DBConfig {
 
 	// 필드
-
 	@Autowired // (DI, 의존성 주입)
 	private ApplicationContext applicationContext;
 	// application scope 객체 : 즉, 현재 프로젝트
 	// => 현재 프로젝트의 전반적인 DB설정과, Bean 관리에 접근할 수 있도록 해줌
 	// => 스프링이 관리하고있는 ApplicationContext 객체를 의존성 주입받는다.
+	
 
 	// 메서드
 	////////////////////////////// HikariCP 설정 //////////////////////////////
-
 	// @Bean
 	// - 개발자가 수동으로 bean을 등록하는 어노테이션
 	// - @Bean 어노테이션이 작성된 메서드에서 반환된 객체는
@@ -74,7 +73,7 @@ public class DBConfig {
 		return dataSource;
 	}
 
-	////////////////////////////Mybatis 설정 추가 ////////////////////////////
+	//////////////////////////// Mybatis 설정 추가 ////////////////////////////
 	// Mybatis : Java 애플리케이션에서 SQL을 더 쉽게 사용할 수 있도록 도와주는 영속성 프레임워크
 	// 영속성 프레임워크(Persistence Framework)는 애플리케이션의 데이터를 데이터베이스와 같은 저장소에
 	// 영구적으로 저장하고, 이를 쉽게 CRUD할 수 있도록 도와주는 프레임워크
@@ -86,16 +85,16 @@ public class DBConfig {
 		SqlSessionFactoryBean sessionFactoryBean = new SqlSessionFactoryBean();
 		sessionFactoryBean.setDataSource(dataSource);
 		
-		// 매퍼 파일이 모여있는 경로 지정
+		// 세팅 1. 매퍼 파일이 모여있는 경로 지정
 		sessionFactoryBean.setMapperLocations(applicationContext.getResources("classpath:/mappers/**.xml"));
 
-		// 별칭을 지정해야하는 DTO가 모여있는 패키지 지정
+		// 세팅 2. 별칭을 지정해야하는 DTO가 모여있는 패키지 지정
 		// -> 해당 패키지에 있는 모든 클래스가 클래스명으로 별칭이 지정됨
 		sessionFactoryBean.setTypeAliasesPackage("edu.kh.todo");
 		// => edu.kh.todo 세팅 시 패키지 하위에 있는 모든 클래스가 클래스명으로 별칭이 지정됨
 		// ex) edu.kh.todo.model.dto.Todo => Todo (별칭 등록) 
 		
-		// 마이바티스 설정 파일 경로 지정
+		// 세팅 3. 마이바티스 설정 파일 경로 지정
 		sessionFactoryBean.setConfigLocation(applicationContext.getResource("classpath:mybatis-config.xml"));
 		
 		// SqlSession 객체 반환

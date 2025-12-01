@@ -16,7 +16,7 @@
   <h3><a href="/ajax/main">TodoList - Ajax 버전 페이지로...</a></h3>
 
 
-  <p>todoNo가 1인 할 일 제목 조회</p>
+  <p th:text="${testTitle}">todoNo가 1인 할 일 제목 조회</p>
 
   <form action="/todo/add" method="post">
     <h4>할 일 추가</h4>
@@ -32,7 +32,7 @@
   <hr>
 
  
-  <h3>전체 Todo 개수/완료된 Todo 개수 내용
+  <h3 th:text="|전체 Todo 개수 : ${#lists.size(todoList)}개 / 완료된 Todo 개수 : ${completeCount}개|">전체 Todo 개수/완료된 Todo 개수
   </h3>
 
   <table border="1">
@@ -47,20 +47,25 @@
     </thead>
 
     <tbody>
-     
-      <tr >
-        <td>행 번호</td>
-        <td>할 일 번호</td>
+      <!--
+        반복 상태 변수 : 현재 반복 중인 객체와 반복 정보를 저장 중인 타임리프 변수
+        => 변수명은 자유지만 보통 iterStat
+      -->
+
+      <tr th:each="todo, iterStat : ${todoList}" th:object="${todo}">
+        <td th:text="${iterStat.count}">행 번호</td>
+        <td th:text="*{todoNo}">할 일 번호</td>
         <td>
-          <a>할 일 제목</a>
+          <a th:text="*{todoTitle}" th:href="@{/todo/detail(todoNo=*{todoNo})}">할 일 제목</a>
         </td>
-        <td>완료 여부(Y/N)</td>
-        <td>등록일</td>
+        <td th:text="*{complete}">완료 여부(Y/N)</td>
+        <td th:text="*{regDate}">등록일</td>
       </tr>
     </tbody>
   </table>
 
-
+  <th:block th:replace="~{common/footer}"></th:block>
+  
 </body>
 
 </html>

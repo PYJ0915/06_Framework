@@ -1,0 +1,12 @@
+<!-- JS 영역 -->
+ <script th:inline="javascript">
+  const message = /*[[${message}]]*/ "전달 받은 메세지";
+  // 전달 받은 message가 없다면 null
+
+  if(message != null) { // session에 message가 있다면 
+
+    alert(message);
+
+  }
+
+ </script>

@@ -61,7 +61,6 @@ function getTotalCount() {
     .then(response => {
       // 서버에서 응답을 받으면, 해당 응답을 텍스트 형식으로 변환하는 콜백 함수
       // 매개변수 response : 비동기 요청에 대한 응답이 담긴 객체
-
       // response.text() : 응답 데이터를 문자열/숫자 형태로 변환한 결과를 가지는 Promise 객체 반환
       return response.text();
 
@@ -70,7 +69,6 @@ function getTotalCount() {
     .then(result => { //  첫 번째 콜백함수가 완료된 후 호출되는 콜백 함수
       // 매개변수로 전달되어진 데이터(result)를 받아서 어떤 식으로 처리할지 정의
       // => #totalCount인 span태그의 내용으로 result값 삽입
-
       totalCount.innerText = result;
 
     });
@@ -225,7 +223,6 @@ const selectTodo = url => {
       popupComplete.innerText = todo.complete;
       popupRegDate.innerText = todo.regDate;
       popupTodoContent.innerText = todo.todoContent;
-
     // popuplayer 보이게 하기
       popupLayer.classList.remove("popup-hidden")
   });
@@ -331,6 +328,83 @@ changeComplete.addEventListener("click", () => {
 
   });
 });
+
+
+// 상세 조회 팝업에서 수정(#updateView) 버튼 클릭 시 
+updateView.addEventListener("click", () => {
+
+  // 기존 상세 조회 팝업 레이어는 숨기고
+  popupLayer.classList.add("popup-hidden");
+
+  // 수정 팝업 레이어는 보이게
+  updateLayer.classList.remove("popup-hidden");
+
+  // 수정 레이어가 보일 때, 상세 조회 팝업 레이어에 작성된 제목, 내용을 얻어와 세팅
+  updateTitle.value = popupTodoTitle.innerText;
+
+  updateContent.value = popupTodoContent.innerHTML.replaceAll("<br>", "\n");
+  // HTML 화면에서 줄 바꿈이 <br>로 인식되고 있는데
+  // textarea에서는 \n으로 바꿔주어야 실제 줄바꿈으로 인식 되어 textarea 창에 출력된다
+
+  // 수정 레이어 -> 수정 버튼에 data-todo-no 속성 추가
+  updateBtn.setAttribute("data-todo-no", popupTodoNo.innerText);
+  // <button id="updateBtn" data-todo-no="3">수정</button>
+
+});
+
+// 수정 레이어에서 취소 버튼 클릭 시
+ updateCancel.addEventListener("click", () => {
+  // 수정 레이어 숨기기
+  updateLayer.classList.add("popup-hidden");
+
+  // 상세 레이어 보이기
+  popupLayer.classList.remove("popup-hidden");
+
+ });
+
+ // 수정 레이어에서 수정 버튼 클릭 시
+ updateBtn.addEventListener("click", e => {
+
+  // 서버로 전달해야하는 값을 JS 객체로 묶음
+  const obj = {
+    "todoNo" : e.target.dataset.todoNo,
+    "todoTitle" : updateTitle.value,
+    "todoContent" : updateContent.value
+  };
+
+  // 비동기 요청
+  fetch("/ajax/update" , {
+    method : "PUT", // @PutMapping
+    headers : {"Content-Type" : "application/json"},
+    body : JSON.stringify(obj)
+  })
+  .then(resp => resp.text())
+  .then(result => {
+
+    if(result > 0) {
+      alert("수정 성공!")
+
+      // 수정 레이어 숨기기 
+      updateLayer.classList.add("popup-hidden");
+
+      // 상세 조회 레이어 보이기
+      // => 수정한 내용 출력되도록
+      popupTodoTitle.innerText = updateTitle.value;
+      popupTodoContent.innerHTML = updateContent.value.replaceAll("\n", "<br>");
+      popupLayer.classList.remove("popup-hidden");
+
+      selectTodoList();
+
+      updateTitle.value = "";
+      updateContent.value = "";
+      updateBtn.removeAttribute("data-todo-no");
+
+    } else {
+      alert("수정 실패...")
+    }
+
+  });
+ });
 
 getTotalCount();
 getCompleteCount();

@@ -54,6 +54,10 @@ COMMIT;
 
 SELECT * FROM MEMBER;
 
+SELECT COUNT(*) FROM "MEMBER"
+WHERE MEMBER_DEL_FL = 'N'
+AND MEMBER_EMAIL = 'user01@kh.or.kr';
+
 -- 회원 1번 유저일 암호화된 비밀번호로 업데이트 (평문 : pass01!)
 UPDATE "MEMBER" SET MEMBER_PW = '$2a$10$nfGb86TM/w47uc3ZAQZ0jef5ZD2OvBx/3/8zkgJLnwecrtZHz2ucu'
 WHERE MEMBER_NO = 1;
@@ -81,11 +85,13 @@ COMMENT ON COLUMN "TB_AUTH_KEY"."CREATE_TIME" IS '인증 번호 생성 시간';
 CREATE SEQUENCE SEQ_KEY_NO NOCACHE; -- 인증키 구분 번호 시퀀스
 
 
-SELECT * FROM "TB_AUTH_KEY";
+SELECT * FROM "TB_AUTH_KEY";	
 
 COMMIT;
 
-
+SELECT COUNT(*) FROM TB_AUTH_KEY
+WHERE EMAIL = 'qkrdbwls3542@gmail.com'
+AND AUTH_KEY = '9c82f0';
 ------------------------------------------
 
 

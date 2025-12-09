@@ -22,4 +22,6 @@ public interface MemberService {
 	 */
 	int checkNickname(String memberNickname);
 
+	int signup(Member inputMember, String[] memberAddress);
+
 }

@@ -160,6 +160,7 @@ public class MyPageController {
 			path = "changePw";
 		}
 		
+		loginMember.setMemberPw(null);
 		ra.addFlashAttribute("message", message);
 		
 		return "redirect:" + path;

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="edu.kh.project.mypage.model.mapper.MyPageMapper">
-
+	
+	<!-- 회원 정보 수정 -->
 	<update id="updateInfo">
 		UPDATE "MEMBER" SET
 		MEMBER_NICKNAME = #{memberNickname},
@@ -10,14 +11,23 @@
 		WHERE MEMBER_NO = ${memberNo}
 	</update>
 	
-	<select id="getPw">
+	<!-- 암호화된 비밀번호 조회 -->
+	<select id="getEncPw">
 		SELECT MEMBER_PW FROM "MEMBER"
 		WHERE MEMBER_NO = ${memberNo}
 	</select>
 	
+	<!-- 비밀번호 변경 -->
 	<update id="changePw">
 		UPDATE "MEMBER" SET
 		MEMBER_PW = #{memberPw}
 		WHERE MEMBER_NO = ${memberNo}
+	</update>
+	
+	<!-- 회원 탈퇴 (UPDATE) -->
+	<update id="secession">
+	UPDATE "MEMBER" SET
+	MEMBER_DEL_FL = 'Y'
+	WHERE MEMBER_NO = ${memberNo}
 	</update>
 </mapper>

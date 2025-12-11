@@ -26,8 +26,31 @@
 	
 	<!-- 회원 탈퇴 (UPDATE) -->
 	<update id="secession">
-	UPDATE "MEMBER" SET
-	MEMBER_DEL_FL = 'Y'
-	WHERE MEMBER_NO = ${memberNo}
+		UPDATE "MEMBER" SET
+		MEMBER_DEL_FL = 'Y'
+		WHERE MEMBER_NO = ${memberNo}
+	</update>
+	
+	<!--  -->
+	<insert id="insertUploadFile">
+		INSERT INTO "UPLOAD_FILE" 
+		VALUES(SEQ_FILE_NO.NEXTVAL, #{filePath}, #{fileOriginalName}, #{fileRename}, DEFAULT, ${memberNo})
+	</insert>
+	
+	<!--  -->
+	<select id="fileList" resultType="UploadFile">
+		SELECT FILE_NO, FILE_ORIGINAL_NAME, FILE_RENAME, MEMBER_NICKNAME, 
+		TO_CHAR(FILE_UPLOAD_DATE, 'YYYY-MM-DD') FILE_UPLOAD_DATE, FILE_PATH
+		FROM "UPLOAD_FILE" 
+		JOIN "MEMBER" ON("UPLOAD_FILE".MEMBER_NO = "MEMBER".MEMBER_NO)
+		WHERE "UPLOAD_FILE".MEMBER_NO = ${memberNo}
+		ORDER BY FILE_NO DESC 
+	</select>
+	
+	<!--  -->
+	<update id="profile">
+		UPDATE "MEMBER" SET
+		PROFILE_IMG = #{profileImg}
+		WHERE MEMBER_NO = ${memberNo}
 	</update>
 </mapper>

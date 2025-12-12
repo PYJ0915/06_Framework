@@ -46,20 +46,11 @@
   <!-- navigator -->
   <nav>
     <ul>
+    <th:block th:each="boardType : ${application.boardTypeList}">
       <li>
-        <a href="#"
-        >게시판이름</a>
+        <a th:href="@{/board/{boardCode}(boardCode=${boardType.boardCode})}" th:text="${boardType.boardName}"></a>
       </li>
-
-      <li class="chatting-li">
-        <a href="#">공지게시판</a>
-      </li>
-      <li class="chatting-li">
-        <a href="#">정보게시판</a>
-      </li>
-      <li class="chatting-li">
-        <a href="#">자유게시판</a>
-      </li>
+    </th:block>
       <li class="chatting-li">
         <a href="#">채팅</a>
       </li>

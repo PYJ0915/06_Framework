@@ -10,4 +10,11 @@ public interface BoardService {
 	 */
 	List<Map<String, Object>> selectBoardTypeList();
 
+	/** 특정 게시판의 지정된 페이지 목록 조회
+	 * @param boardCode (특정 게시판)
+	 * @param cp (지정된 페이지)
+	 * @return
+	 */
+	Map<String, Object> selectBoardList(int boardCode, int cp);
+
 }

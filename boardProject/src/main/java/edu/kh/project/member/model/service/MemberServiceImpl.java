@@ -127,4 +127,15 @@ public class MemberServiceImpl implements MemberService{
 		return mapper.resetPw(map);
 	}
 
+	@Override
+	public int restorationMember(int memberNo) {
+		
+		// 전달받은 memberNo의 회원이 탈퇴했는지 확인
+		int count = mapper.checkDelFl(memberNo);
+		
+		if (count == 0) return 0;
+		
+		return mapper.restorationMember(memberNo);
+	}
+
 }

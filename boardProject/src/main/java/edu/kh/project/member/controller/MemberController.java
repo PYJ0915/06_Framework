@@ -195,4 +195,11 @@ public class MemberController {
 		return service.resetPw(memberNo);
 	}
 	
+	@ResponseBody
+	@PutMapping("restorationMember")
+	public int restorationMember(@RequestBody int memberNo) {
+		if(memberNo == 0) return 0;
+		return service.restorationMember(memberNo);
+	}
+	
 }

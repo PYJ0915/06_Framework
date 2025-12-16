@@ -107,3 +107,28 @@ document.querySelector("#resetPw").addEventListener("click", () => {
 	});
 
 });
+
+document.querySelector("#restorationBtn").addEventListener("click", () => {
+
+	const memberNo = document.querySelector("#restorationMemberNo").value
+
+	fetch("/member/restorationMember", {
+		method : "PUT",
+		headers : {"Content-Type" : "application/json"},
+		body : JSON.stringify(memberNo)
+	})
+	.then(resp => resp.text())
+	.then(result => {
+
+		if (result > 0) {
+			alert("회원 복구가 완료되었습니다.");
+
+			
+		} else {
+			alert("없는 회원번호이거나 회원이 탈퇴하지 않았습니다.");
+		}
+
+	});
+
+})
+

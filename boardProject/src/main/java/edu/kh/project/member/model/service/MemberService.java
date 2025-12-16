@@ -30,4 +30,6 @@ public interface MemberService {
 
 	int resetPw(int memberNo);
 
+	int restorationMember(int memberNo);
+
 }

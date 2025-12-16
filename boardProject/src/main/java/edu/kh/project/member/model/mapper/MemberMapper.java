@@ -45,4 +45,16 @@ public interface MemberMapper {
 	 */
 	int resetPw(Map<String, Object> map);
 
+	/** 회원 복구 SQL 실행
+	 * @param memberNo
+	 * @return
+	 */
+	int restorationMember(int memberNo);
+
+	/** 탈퇴 여부 확인
+	 * @param memberNo
+	 * @return
+	 */
+	int checkDelFl(int memberNo);
+
 }

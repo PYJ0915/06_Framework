@@ -35,4 +35,15 @@
 				#{memberAddress}, NULL, DEFAULT, DEFAULT, DEFAULT)
 	</insert>
 	
+	
+	<!-- 회원 조회 -->
+	<select id="selectMember" resultType="Member">
+		SELECT MEMBER_NO, MEMBER_EMAIL, MEMBER_NICKNAME, MEMBER_DEL_FL
+		FROM "MEMBER"
+	</select>
+	
+	<update id="resetPw">
+		UPDATE "MEMBER" SET MEMBER_PW = #{encPw}
+		WHERE MEMBER_NO = #{memberNo}
+	</update>
 </mapper>

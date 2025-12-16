@@ -20,6 +20,34 @@
     
       <section class="content-1">
 		<!-- 비동기 보충 시 사용 영역 -->
+     <h3>
+					회원 목록 조회(비동기)
+					<button id="selectMemberList">조회</button>
+				</h3>
+				<table border="1">
+					<thead>
+						<th>회원 번호</th>
+						<th>이메일</th>
+						<th>닉네임</th>
+						<th>탈퇴 여부</th>
+					</thead>
+					<tbody id="memberList">
+					</tbody>
+				</table>
+				<hr>
+				<h3>특정 회원 비밀번호 초기화(Ajax)</h3>
+				<div>
+					회원번호:
+					<input type="text" id="resetMemberNo">
+					<button id="resetPw">비밀번호 pass01! 로 초기화</button>
+				</div>
+				<hr>
+				<h3>특정 회원(회원번호) 탈퇴 복구 (Ajax)</h3>
+				<div>
+					회원번호 :
+					<input type="text" id="restorationMemberNo">
+					<button id="restorationBtn">복구하기</button>
+				</div>
 	  </section>
 
       <section class="content-2">

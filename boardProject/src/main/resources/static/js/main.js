@@ -52,3 +52,58 @@ if(loginEmail != null) {
   }
   
 }
+
+document.querySelector("#selectMemberList").addEventListener("click", () => {
+const tbody = document.querySelector("#memberList")
+
+	fetch("/member/selectMember")
+	.then(resp => resp.json())
+	.then(memberList => {
+
+		tbody.innerHTML = "";
+
+		for(let member of memberList) {
+
+			const tr = document.createElement("tr");
+			const arr = ['memberNo', 'memberEmail', 'memberNickname', 'memberDelFl']
+
+			for(let key of arr) {
+
+				const td = document.createElement("td");
+
+				td.innerText = member[key];
+				tr.append(td);
+
+			}
+			tbody.append(tr);
+		}
+
+
+	});
+
+});
+
+
+document.querySelector("#resetPw").addEventListener("click", () => {
+
+	const memberNo = document.querySelector("#resetMemberNo").value;
+
+	fetch("/member/resetPw", {
+		method : "PUT",
+		headers : {"Content-Type" : "application/json"}, 
+		body : JSON.stringify(memberNo)
+	})
+	.then(resp => resp.text())
+	.then(result => {
+
+		console.log(result);
+
+		if (result > 0) {
+			alert("비밀번호가 초기화되었습니다!");
+		} else {
+			alert("초기화 실패 ㅜㅜ");
+		}
+
+	});
+
+});

@@ -26,7 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /* @SessionAttributes
  * - Model에 추가된 속성 중 key 값이 일치하는 속성을 session scope로 변경하는 어노테이션
- * - 클래스 상단에 @SessionAttributes("{loginMember}") 작성
+ * - 클래스 상단에 @SessionAttributes({"loginMember"}) 작성
  * 
  * @SessionAttribute
  * - @SessionAttributes를 통해 session에 등록된 속성을 꺼내올 때 사용하는 어노테이션

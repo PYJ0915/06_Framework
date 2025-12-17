@@ -53,8 +53,9 @@ if(loginEmail != null) {
   
 }
 
-document.querySelector("#selectMemberList").addEventListener("click", () => {
 const tbody = document.querySelector("#memberList")
+
+function selectMemberList() {
 
 	fetch("/member/selectMember")
 	.then(resp => resp.json())
@@ -78,10 +79,11 @@ const tbody = document.querySelector("#memberList")
 			tbody.append(tr);
 		}
 
-
 	});
 
-});
+} 
+
+document.querySelector("#selectMemberList").addEventListener("click", selectMemberList);
 
 
 document.querySelector("#resetPw").addEventListener("click", () => {
@@ -122,13 +124,12 @@ document.querySelector("#restorationBtn").addEventListener("click", () => {
 
 		if (result > 0) {
 			alert("회원 복구가 완료되었습니다.");
-
-			
+			selectMemberList();
 		} else {
 			alert("없는 회원번호이거나 회원이 탈퇴하지 않았습니다.");
 		}
 
 	});
 
-})
+});
 

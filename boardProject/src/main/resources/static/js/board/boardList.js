@@ -5,7 +5,7 @@ const insertBtn = document.querySelector("#insertBtn");
 if(insertBtn != null) {
     insertBtn.addEventListener('click', () => {
 
-        // get 방식 요청
+        // get 방식 요청 (동기식)
         // /editBoard/1/insert
         location.href = `/editBoard/${boardCode}/insert`;
     });

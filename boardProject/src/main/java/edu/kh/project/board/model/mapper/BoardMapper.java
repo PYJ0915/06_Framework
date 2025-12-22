@@ -72,10 +72,15 @@ public interface BoardMapper {
 	 */
 	int insertBoardLike(Map<String, Integer> map);
 
-	/** 게시글 좋아요 개수 조회 (SELECT)
+	/** 게시글 좋아요 개수 조회 (SELECT) SQL 수행
 	 * @param integer
 	 * @return
 	 */
 	int selectLikeCount(int boardNo);
+
+	/** DB 이미지 파일명 목록 조회 SQL 수행
+	 * @return
+	 */
+	List<String> selectDbImageList();
 
 }

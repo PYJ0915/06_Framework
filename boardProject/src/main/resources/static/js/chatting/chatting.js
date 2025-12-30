@@ -88,11 +88,11 @@ targetInput.addEventListener("input", e => {
 });
 
 
-// 채팅방 입장 또는 선택 함수
+// 새로운 채팅방 입장 또는 기존 채팅방 선택 함수
 function chattingEnter(e){
 
 	console.log(e.target); // 실제 클릭된 요소
-	console.log(e.currentTarget); // 이벤트 리스트가 설정된 요소
+	console.log(e.currentTarget); // 이벤트 리스너가 설정된 요소
 
 	const targetNo = e.currentTarget.getAttribute("data-id");
 
@@ -171,7 +171,7 @@ function selectRoomList(){
 
 			const targetName = document.createElement("span");
 			targetName.classList.add("target-name");
-			targetName.innerText = room.targetNickName;
+			targetName.innerText = room.targetNickname;
 			
 			const recentSendTime = document.createElement("span");
 			recentSendTime.classList.add("recent-send-time");

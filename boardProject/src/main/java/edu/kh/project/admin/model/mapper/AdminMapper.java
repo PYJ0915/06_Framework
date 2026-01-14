@@ -1,5 +1,7 @@
 package edu.kh.project.admin.model.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import edu.kh.project.member.model.dto.Member;
@@ -10,5 +12,9 @@ public interface AdminMapper {
 	Member login(String memberEmail);
 
 	int checkEmail(String memberEmail);
+
+	int createAdminAccount(Member member);
+
+	List<Member> adminAccountList();
 
 }

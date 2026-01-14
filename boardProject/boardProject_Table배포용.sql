@@ -39,15 +39,15 @@ CREATE SEQUENCE SEQ_MEMBER_NO NOCACHE;
 -- 샘플 회원 데이터 삽입
 INSERT INTO "MEMBER"
 VALUES(SEQ_MEMBER_NO.NEXTVAL, 
-			 'user01@kh.or.kr',
-			 'pass01!',
-			 '유저일',
+			 'admin01@kh.or.kr',
+			 '$2a$10$SC0KYLzAdtkZT12h5wTWT.csuiG.boiRC4ct6Mioe5puIo4W7GZmW',
+			 '관리자계정',
 			 '01012341234',
 			 NULL,
 			 NULL,
 			 DEFAULT,
 			 DEFAULT,
-			 DEFAULT
+			 2
 );
 
 COMMIT;

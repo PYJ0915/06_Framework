@@ -31,7 +31,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("board")
 @Slf4j
 @RequiredArgsConstructor
-public class BoardCotroller {
+public class BoardController {
 	
 	private final BoardService service;
 	
